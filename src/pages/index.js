@@ -10,9 +10,9 @@ import AppDrawer from '../components/AppDrawer';
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen flex justify-start gap-5">
-      {/* <AppSidebar /> */}
-      <AppDrawer className="" />
+    <div className="w-screen h-screen flex justify-start gap-5 bg-fuchsia-200">
+      <AppSidebar />
+      {/* <AppDrawer className="" /> */}
       <div className=''>
         <section className="text-gray-400 bg-gray-900 body-font">
           <div className="container px-5 py-24 mx-auto">
