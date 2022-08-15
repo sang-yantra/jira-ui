@@ -35,7 +35,7 @@ function AppSidebar() {
         `}
         />
         <h2
-          className={`text-white text-2xl origin-left font-medium duration-300 ${
+          className={`logo text-white text-3xl origin-left font-bold duration-300 ${
             !open && "scale-0"
           }`}
         >
