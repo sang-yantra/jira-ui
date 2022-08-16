@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url(../components//AppSidebar/AppSidebar.css);
+@import url(../components/AppSidebar/AppSidebar.css);
+@import url("../components/Ticket/Ticket.css");
+
 html,
 body {
   padding: 0;
