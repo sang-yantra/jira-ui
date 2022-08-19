@@ -9,12 +9,11 @@ import Ticket from '../../components/Ticket/Ticket';
 import { useEffect, useState } from 'react';
 
 import { TASK_MANAGEMENT } from '../../constants/api';
+import DndBoard from '../../components/DnD/DndBoard';
 
 export default function Board() {
 
-    const [tasksNew, setTasksNew] = useState([])
-    const [tasksActive, setTasksActive] = useState([])
-    const [tasksDone, setTasksDone] = useState([])
+    const [allTasks, setallTasks] = useState([])
     const [pbis, setPbis] = useState([])
     console.log("Base url", process.env.BASE_URL)
 
@@ -25,45 +24,27 @@ export default function Board() {
             await fetch(TASK_MANAGEMENT.TASKS)
                 .then(res => res.json())
                 .then(response => {
-                    const pbiFormArr = []
+                    const pbiFormArr = {}
                     response.forEach(task => {
                         /// load pbi
-                        const taskPbi = task.Pbi[0]
-                        if (pbiFormArr.length === 0) {
-                            pbiFormArr[0] = {
-                                ...taskPbi,
-                                New: [],
-                                Active: [],
-                                Done: []
+                        const pbiId = task.Pbi[0].Id
+
+                        if (pbiFormArr[pbiId]) {
+                            pbiFormArr[pbiId] = {
+                                ...pbiFormArr[pbiId],
+                                Tasks: [...pbiFormArr[pbiId].Tasks, task]
+                            }
+                        }
+                        else {
+                            pbiFormArr[pbiId] = {
+                                Pbi: task.Pbi[0],
+                                Tasks: [{ ...task }]
                             }
                         }
 
-
-                        const pbiIndex = pbiFormArr.findIndex(pbi => pbi.Id === taskPbi.Id)
-                        if (pbiIndex === -1) {
-                            pbiFormArr.push({
-                                ...taskPbi,
-                                New: [],
-                                Active: [],
-                                Done: []
-                            })
-                        }
-
-                        pbiFormArr[pbiIndex][task.Status].push({
-                            Id: task.Id,
-                            Title: task.Title,
-                            Status: task.Status,
-                            Completed: task.Completed,
-                            Original_Estimate: task.Original_Estimate
-                        })
-
-                        /// load new task
-                        /// load active task
-                        /// load done task
                     });
                     setPbis(pbiFormArr)
                     console.log("pbis", pbiFormArr)
-                    console.log("response", response)
                 })
                 .catch(error => {
                     console.log(error)
@@ -78,20 +59,6 @@ export default function Board() {
         }
     }, [])
 
-    const loadPbi = () => {
-
-    }
-
-    const loadTaskNew = () => {
-
-    }
-
-    const loadTaskActive = () => {
-
-    }
-    const loadTaskDone = () => {
-
-    }
     return (
         <div className="w-screen h-screen flex justify-start bg-fuchsia-100">
             <AppSidebar />
@@ -99,18 +66,16 @@ export default function Board() {
             <section className=' text-black text-lg font-semibold flex-auto bg-fuchsia-100
              ml-4 p-4 h-[100%] overflow-scroll overflow-x-hidden'>
                 {
-                    pbis?.map(pbi => {
-                        return (<div key={pbi.Id}>
-
-                            <div className='flex min-h-[600px] h-auto'>
-                                <PbiContainer Title={pbi.Title} />
-                                <TasksContainer Tasks={pbi.New} />
-                                <TasksContainer Tasks={pbi.Active} />
-                                <TasksContainer Tasks={pbi.Done} />
-
+                    pbis && Object.keys(pbis).map((key, index) => {
+                        return (<div key={index}
+                            className='flex justify-start'
+                        >
+                            <div className='flex-[0.25]'>
+                                <Ticket
+                                    Title={pbis[key].Pbi.Title}
+                                />
                             </div>
-                            <hr className='w-[100%] mt-4' />
-                            <br />
+                            <DndBoard responseCols={pbis[key].Tasks} />
                         </div>
                         )
                     })
@@ -147,11 +112,4 @@ const TasksContainer = (props) => {
     </div>
 }
 
-const Task = ({ Title }) => {
-    return (<div className=' bg-violet-100 border-l-4 border-violet-900 min-h-[100px]
-     p-2 rounded-sm mt-2
-    '>
-        {Title}
-    </div>)
-}
 
