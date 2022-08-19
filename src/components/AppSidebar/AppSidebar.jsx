@@ -101,11 +101,6 @@ function AppSidebar() {
       </div>
       <div className="absolute bottom-1 text-xl text-white">
         <div className="flex items-center p-2 mt-12 space-x-4 justify-self-end">
-          <img
-            src="https://source.unsplash.com/100x100/?portrait"
-            alt=""
-            className="w-12 h-12 rounded-lg dark:dark:bg-gray-500"
-          />
           <div>
             <h2 className="text-lg font-semibold">Leroy Jenkins</h2>
             <span className="flex items-center space-x-1">
