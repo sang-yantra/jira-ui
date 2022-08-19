@@ -4,7 +4,6 @@
 @import url(../components/AppSidebar/AppSidebar.css);
 @import url("../components/Ticket/Ticket.css");
 @import url("../views/home/TeamsGrid.css");
-@import url("../pages/test/test.css");
 
 html,
 body {
