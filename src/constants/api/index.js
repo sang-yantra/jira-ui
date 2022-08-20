@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.BASE_URL || "https://jira-ms-vercel-git-feature-teams-management-monkeydgoku.vercel.app";
+export const BASE_URL = process.env.BASE_URL || "https://https://jira-ui.vercel.app/";
 
 const API_VERSION = 1;
 const API = "api";
