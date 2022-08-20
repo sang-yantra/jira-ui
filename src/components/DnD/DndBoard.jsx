@@ -34,7 +34,7 @@ const StatusType = {
   Done: "Done",
 };
 
-function DndBoard({ responseCols }) {
+function DndBoard({ responseCols, updateTasksStatus }) {
   const [columns, setColumns] = useState(responseFormatter(responseCols));
   const onDragHandle = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -65,6 +65,8 @@ function DndBoard({ responseCols }) {
           items: destiColUpdate,
         },
       });
+
+      updateTasksStatus(result.draggableId, removed.Status);
     } else {
       const column = columns[source.droppableId];
       const copiedItems = [...column.items];

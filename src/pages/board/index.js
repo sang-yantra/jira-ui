@@ -59,6 +59,33 @@ export default function Board() {
         }
     }, [])
 
+    /**
+     * Update the status of the task
+     * @param {string} PbiId 
+     * @param {uuid} id 
+     * @param {string} status 
+     */
+    function updateTasksStatus(id, status) {
+        debugger;
+        const Status = { Status: status }
+        console.log("url", TASK_MANAGEMENT.TASKS_UPDATE_STATUS(id))
+        fetch(TASK_MANAGEMENT.TASKS_UPDATE_STATUS(id), {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Status),
+        })
+            .then(response => response.json())
+            .then(response => {
+                debugger;
+                console.log("Task", id, "updated with statsus", status, response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     return (
         <div className="w-screen h-screen flex justify-start bg-fuchsia-100">
             <AppSidebar />
@@ -75,7 +102,7 @@ export default function Board() {
                                     Title={pbis[key].Pbi.Title}
                                 />
                             </div>
-                            <DndBoard responseCols={pbis[key].Tasks} />
+                            <DndBoard responseCols={pbis[key].Tasks} updateTasksStatus={updateTasksStatus} />
                         </div>
                         )
                     })
