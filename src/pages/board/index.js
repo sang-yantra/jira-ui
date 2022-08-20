@@ -5,15 +5,15 @@ import { useTheme } from "next-themes"
 import { Dropdown } from "flowbite-react";
 import AppSidebar from '../../components/AppSidebar/AppSidebar';
 import AppDrawer from '../../components/AppDrawer';
+import Ticket from '../../components/Ticket/Ticket';
 import { useEffect, useState } from 'react';
 
 import { TASK_MANAGEMENT } from '../../constants/api';
+import DndBoard from '../../components/DnD/DndBoard';
 
 export default function Board() {
 
-    const [tasksNew, setTasksNew] = useState([])
-    const [tasksActive, setTasksActive] = useState([])
-    const [tasksDone, setTasksDone] = useState([])
+    const [allTasks, setallTasks] = useState([])
     const [pbis, setPbis] = useState([])
     console.log("Base url", process.env.BASE_URL)
 
@@ -24,62 +24,27 @@ export default function Board() {
             await fetch(TASK_MANAGEMENT.TASKS)
                 .then(res => res.json())
                 .then(response => {
-                    const pbiFormArr = []
+                    const pbiFormArr = {}
                     response.forEach(task => {
                         /// load pbi
-                        debugger;
-                        const taskPbi = task.Pbi[0]
-                        if (pbiFormArr.length === 0) {
-                            pbiFormArr[0] = {
-                                ...taskPbi,
-                                NewTasks: [],
-                                ActiveTasks: [],
-                                ClosedTasks: []
+                        const pbiId = task.Pbi[0].Id
+
+                        if (pbiFormArr[pbiId]) {
+                            pbiFormArr[pbiId] = {
+                                ...pbiFormArr[pbiId],
+                                Tasks: [...pbiFormArr[pbiId].Tasks, task]
+                            }
+                        }
+                        else {
+                            pbiFormArr[pbiId] = {
+                                Pbi: task.Pbi[0],
+                                Tasks: [{ ...task }]
                             }
                         }
 
-
-                        const pbiIndex = pbiFormArr.findIndex(pbi => pbi.Id === taskPbi.Id)
-                        if (pbiIndex === -1) {
-                            pbiFormArr.push({
-                                ...taskPbi,
-                                NewTasks: [],
-                                ActiveTasks: [],
-                                ClosedTasks: []
-                            })
-                        }
-
-                        if (task.Status === "New") {
-                            pbiFormArr[pbiIndex].NewTasks.push({
-                                Id: task.Id,
-                                Title: task.Title,
-                                Status: task.Status
-                            })
-                        }
-
-                        if (task.Status === "Active") {
-                            pbiFormArr[pbiIndex].ActiveTasks.push({
-                                Id: task.Id,
-                                Title: task.Title,
-                                Status: task.Status
-                            })
-                        }
-
-                        if (task.Status === "Closed") {
-                            pbiFormArr[pbiIndex].ClosedTasks.push({
-                                Id: task.Id,
-                                Title: task.Title,
-                                Status: task.Status
-                            })
-                        }
-
-                        /// load new task
-                        /// load active task
-                        /// load done task
                     });
                     setPbis(pbiFormArr)
                     console.log("pbis", pbiFormArr)
-                    console.log("response", response)
                 })
                 .catch(error => {
                     console.log(error)
@@ -94,39 +59,50 @@ export default function Board() {
         }
     }, [])
 
-    const loadPbi = () => {
-
+    /**
+     * Update the status of the task
+     * @param {string} PbiId 
+     * @param {uuid} id 
+     * @param {string} status 
+     */
+    function updateTasksStatus(id, status) {
+        debugger;
+        const Status = { Status: status }
+        console.log("url", TASK_MANAGEMENT.TASKS_UPDATE_STATUS(id))
+        fetch(TASK_MANAGEMENT.TASKS_UPDATE_STATUS(id), {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(Status),
+        })
+            .then(response => response.json())
+            .then(response => {
+                debugger;
+                console.log("Task", id, "updated with statsus", status, response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
-    const loadTaskNew = () => {
-
-    }
-
-    const loadTaskActive = () => {
-
-    }
-    const loadTaskDone = () => {
-
-    }
     return (
         <div className="w-screen h-screen flex justify-start bg-fuchsia-100">
             <AppSidebar />
             {/* <AppDrawer className="" /> */}
-            <section className=' text-black text-lg font-semibold flex-auto bg-fuchsia-300
+            <section className=' text-black text-lg font-semibold flex-auto bg-fuchsia-100
              ml-4 p-4 h-[100%] overflow-scroll overflow-x-hidden'>
                 {
-                    pbis?.map(pbi => {
-                        return (<div key={pbi.Id}>
-
-                            <div className='flex min-h-[600px] h-auto'>
-                                <PbiContainer Title={pbi.Title} />
-                                <TasksContainer Tasks={pbi.NewTasks} />
-                                <TasksContainer Tasks={pbi.ActiveTasks} />
-                                <TasksContainer Tasks={pbi.ClosedTasks} />
-
+                    pbis && Object.keys(pbis).map((key, index) => {
+                        return (<div key={index}
+                            className='flex justify-start'
+                        >
+                            <div className='flex-[0.25]'>
+                                <Ticket
+                                    Title={pbis[key].Pbi.Title}
+                                />
                             </div>
-                            <hr className='w-[100%] mt-4' />
-                            <br />
+                            <DndBoard responseCols={pbis[key].Tasks} updateTasksStatus={updateTasksStatus} />
                         </div>
                         )
                     })
@@ -138,28 +114,29 @@ export default function Board() {
 }
 
 const PbiContainer = (props) => {
-    return <div className=' flex-[0.25] border-2 ml-2 min-h-[inherit] h-auto p-2'>
-        <Task Title={props.Title} />
+    return <div className=' flex-[0.25] border-2 border-fuchsia-900 ml-2 min-h-[inherit] h-auto p-2'>
+        <Ticket key={props.Id} Title={props.Title} Completed={props.Completed}
+            Original_Estimate={props.Original_Estimate}
+            Assigned_To={props.Assigned_To}
+        />
     </div>
 }
 
 
 const TasksContainer = (props) => {
-    return <div className=' flex-[0.25] border-2 ml-2 min-h-[inherit] h-auto p-2'>
+    return <div className=' flex-[0.25] border-2 border-fuchsia-900 ml-2 min-h-[inherit] h-auto p-2'>
         {
             props.Tasks?.map(task => {
-                return <Task key={task.Id} Title={task.Title} />
+                console.log(task)
+                return <Ticket key={task.Id} Title={task.Title} Completed={task.Completed}
+                    Original_Estimate={task.Original_Estimate}
+                    Assigned_To={task.Assigned_To}
+                    Status={task.Status}
+                />
             })
         }
 
     </div>
 }
 
-const Task = ({ Title }) => {
-    return (<div className=' bg-violet-300 border-l-4 border-violet-900 min-h-[100px]
-     p-2 rounded-sm mt-2
-    '>
-        {Title}
-    </div>)
-}
 
