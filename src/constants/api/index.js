@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.BASE_URL || "https://jira-ms-vercel.vercel.app/";
+export const BASE_URL = process.env.BASE_URL || "https://jira-ms-vercel.vercel.app";
 
 const API_VERSION = 1;
 const API = "api";
