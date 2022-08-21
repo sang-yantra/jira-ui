@@ -7,8 +7,8 @@ const toolbarGroups = [
       options: [
         { text: "Sans Serif", value: "sans" },
         { text: "Serif", value: "serif" },
-        { text: "MonoSpace", value: "monospace" }
-      ]
+        { text: "MonoSpace", value: "monospace" },
+      ],
     },
     {
       id: 2,
@@ -18,135 +18,135 @@ const toolbarGroups = [
         { text: "Small", value: "small" },
         { text: "Normal", value: "normal" },
         { text: "Medium", value: "medium" },
-        { text: "Huge", value: "huge" }
-      ]
-    }
+        { text: "Huge", value: "huge" },
+      ],
+    },
   ],
   [
     {
       id: 3,
       format: "bold",
-      type: "mark"
+      type: "mark",
     },
     {
       id: 4,
       format: "italic",
-      type: "mark"
+      type: "mark",
     },
     {
       id: 5,
       format: "underline",
-      type: "mark"
+      type: "mark",
     },
     {
       id: 6,
       format: "strikethrough",
-      type: "mark"
-    }
+      type: "mark",
+    },
   ],
   [
     {
       id: 7,
       format: "color",
-      type: "color-picker"
+      type: "color-picker",
     },
     {
       id: 8,
       format: "bgColor",
-      type: "color-picker"
-    }
+      type: "color-picker",
+    },
   ],
   [
     {
       id: 9,
       format: "superscript",
-      type: "mark"
+      type: "mark",
     },
     {
       id: 10,
       format: "subscript",
-      type: "mark"
-    }
+      type: "mark",
+    },
   ],
   [
     {
       id: 11,
       format: "headingOne",
-      type: "block"
+      type: "block",
     },
     {
       id: 12,
       format: "headingTwo",
-      type: "block"
+      type: "block",
     },
     {
       id: 13,
       format: "headingThree",
-      type: "block"
+      type: "block",
     },
     {
       id: 14,
       format: "blockquote",
-      type: "block"
-    }
+      type: "block",
+    },
   ],
   [
     {
       id: 15,
       format: "orderedList",
-      type: "block"
+      type: "block",
     },
     {
       id: 16,
       format: "unorderedList",
-      type: "block"
-    }
+      type: "block",
+    },
   ],
   [
     {
       id: 17,
       format: "alignLeft",
-      type: "block"
+      type: "block",
     },
     {
       id: 18,
       format: "alignCenter",
-      type: "block"
+      type: "block",
     },
     {
       id: 19,
       format: "alignRight",
-      type: "block"
-    }
+      type: "block",
+    },
   ],
   [
     {
       id: 20,
       format: "link",
-      type: "link"
+      type: "link",
     },
     {
       id: 21,
       format: "image",
-      type: "embed"
+      type: "embed",
     },
     {
       id: 22,
       format: "video",
-      type: "embed"
+      type: "embed",
     },
     {
       id: 23,
-      type: "table"
-    }
+      type: "table",
+    },
   ],
 
   [
     {
       id: 24,
-      type: "inTable"
-    }
-  ]
+      type: "inTable",
+    },
+  ],
 ];
 
 export default toolbarGroups;
