@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import AppSidebar from "../../../../../components/AppSidebar/AppSidebar";
+import AppSidebar from "@/components/AppSidebar/AppSidebar";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 
-import { TASK_MANAGEMENT } from "../../../../../constants/api";
-import SlateEditor from "../../../../../components/SlateEditor/Editor";
+import { TASK_MANAGEMENT } from "@/constants/api";
+import SlateEditor from "@/components/SlateEditor/Editor";
 import { FaClipboardCheck } from "react-icons/fa";
 import { Router, useRouter } from "next/router";
 

@@ -12,6 +12,7 @@ import {
   FaFacebookMessenger,
   FaSlideshare,
 } from "react-icons/fa";
+import Link from "next/link";
 
 function AppSidebar() {
   const [open, setOpen] = useState(true);
@@ -68,30 +69,35 @@ function AppSidebar() {
               <SidebarItem
                 Icon={FaHome}
                 itemName={"Overview"}
+                path={""}
                 color={"text-cyan-500"}
                 open={open}
               />
               <SidebarItem
                 Icon={FaIndustry}
                 itemName={"Backlog"}
+                path={"backlog"}
                 color={"text-green-300"}
                 open={open}
               />
               <SidebarItem
                 Icon={FaChalkboardTeacher}
                 itemName={"Boards"}
+                path={"board/tasks"}
                 color={"text-red-300"}
                 open={open}
               />
               <SidebarItem
                 Icon={FaFacebookMessenger}
                 itemName={"Messages"}
+                path={"messages"}
                 color={"text-pink-600"}
                 open={open}
               />
               <SidebarItem
                 Icon={FaSlideshare}
                 itemName={"Blog"}
+                path={"blog"}
                 color={"text-yellow-300"}
                 open={open}
               />
@@ -119,17 +125,19 @@ function AppSidebar() {
   );
 }
 
-const SidebarItem = ({ Icon, itemName, color, open }) => {
+const SidebarItem = ({ Icon, itemName, path, color, open }) => {
   return (
     <li className="rounded-md hover:bg-fuchsia-600">
-      <a
-        rel="noopener noreferrer"
-        href="#"
-        className="flex justify-start rounded-md p-2"
-      >
-        <Icon className={`${color} text-2xl`} />
-        <span className={`${!open && "hidden"} ml-3`}>{itemName}</span>
-      </a>
+      <Link href={`/${path}`}>
+        <a
+          rel="noopener noreferrer"
+          href="#"
+          className="flex justify-start rounded-md p-2"
+        >
+          <Icon className={`${color} text-2xl`} />
+          <span className={`${!open && "hidden"} ml-3`}>{itemName}</span>
+        </a>
+      </Link>
     </li>
   );
 };

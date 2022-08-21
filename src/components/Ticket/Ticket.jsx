@@ -33,7 +33,7 @@ const Ticket = ({
   `}
     >
       <FaClipboardCheck className="inline-block text-lg text-blue-500" />
-      <Link href={`/board/tasks/task/${Id}`}>
+      <Link href={`/board/tasks/${Id}`}>
         <a className="ml-3">
           {Title.substring(0, 50)}
           {Title.length > 50 ? "..." : ""}
