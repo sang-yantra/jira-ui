@@ -96,7 +96,7 @@ const Toolbar = () => {
                 return (
                   <Linkbutton
                     key={element.id}
-                    active={isBlockActive(editor, "link") ? "true" : "false"}
+                    active={"true"}
                     editor={editor}
                   />
                 );

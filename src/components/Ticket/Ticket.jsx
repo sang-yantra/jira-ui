@@ -32,13 +32,13 @@ const Ticket = ({
       ${isDragging ? " opacity-50" : ""}
   `}
     >
+      <FaClipboardCheck className="inline-block text-lg text-blue-500" />
       <Link href={`/board/tasks/task/${Id}`}>
-        <FaClipboardCheck className="inline-block text-lg text-blue-500" />
+        <a className="ml-3">
+          {Title.substring(0, 50)}
+          {Title.length > 50 ? "..." : ""}
+        </a>
       </Link>
-      <span className="ml-3">
-        {Title.substring(0, 50)}
-        {Title.length > 50 ? "..." : ""}
-      </span>
       <div className="ticket-container first-letter:">
         <h3>
           {Completed}/{Original_Estimate}
