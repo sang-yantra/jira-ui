@@ -74,7 +74,7 @@ const Element = (props) => {
     case "table-cell":
       return <td {...attributes}>{children}</td>;
     case "image":
-      return <Image {...props} />;
+      return <Image {...props} alt={"alt"} />;
     case "video":
       return <Video {...props} />;
     default:

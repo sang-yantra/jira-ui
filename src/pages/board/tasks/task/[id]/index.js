@@ -60,7 +60,7 @@ function Task() {
     return () => {
       abortController.abort();
     };
-  }, []);
+  }, [id]);
   const handleFormSubmit = (e) => {
     e.preventDefault();
   };
