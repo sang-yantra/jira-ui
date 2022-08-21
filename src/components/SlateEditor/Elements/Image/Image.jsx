@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelected, useFocused } from "slate-react";
-
-const Image = ({ attributes, element, children }) => {
+import Image from "next/image";
+const ImageWrapper = ({ attributes, element, children }) => {
   const { url, width, height } = element;
   const selected = useSelected();
   const focused = useFocused();
@@ -17,10 +17,10 @@ const Image = ({ attributes, element, children }) => {
       }}
     >
       <div contentEditable={false} style={{ width: width, height: height }}>
-        <img alt={element.alt} src={url} />
+        <Image alt={element.alt} src={url} />
       </div>
       {children}
     </div>
   );
 };
-export default Image;
+export default ImageWrapper;
