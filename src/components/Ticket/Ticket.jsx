@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { FaClipboardCheck } from "react-icons/fa";
 
 const Ticket = ({
+  Id,
   Title,
   Completed,
   Original_Estimate,
@@ -22,15 +24,17 @@ const Ticket = ({
   };
   return (
     <div
-      className={`select-none w-[250px] min-h-[150px] p-3 m-auto mt-7 text-black font-medium rounded-md 
+      className={`m-auto mt-7 min-h-[150px] w-[250px] select-none rounded-md p-3 font-medium text-black 
       ${statusColor[Status]}
        border-l-8 ${borderColors[Status]}
-      shadow-md hover:shadow-lg
-      cursor-pointer
+      cursor-pointer shadow-md
+      hover:shadow-lg
       ${isDragging ? " opacity-50" : ""}
   `}
     >
-      <FaClipboardCheck className="inline-block text-lg text-blue-500" />
+      <Link href={`/board/tasks/task/${Id}`}>
+        <FaClipboardCheck className="inline-block text-lg text-blue-500" />
+      </Link>
       <span className="ml-3">
         {Title.substring(0, 50)}
         {Title.length > 50 ? "..." : ""}

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^4.2.1",
     "flowbite": "^1.5.2",
     "flowbite-react": "^0.1.6",
     "next": "12.2.5",
@@ -17,6 +18,9 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "slate": "^0.82.0",
+    "slate-history": "^0.66.0",
+    "slate-react": "^0.82.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -24,6 +28,8 @@
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.5",
     "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "tailwindcss": "^3.1.8"
   }
 }

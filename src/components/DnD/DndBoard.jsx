@@ -83,7 +83,7 @@ function DndBoard({ responseCols, updateTasksStatus }) {
     }
   };
   return (
-    <div className="flex flex-[0.75] h-[100%] gap-1">
+    <div className="flex h-[100%] flex-[0.75] gap-1">
       <DragDropContext
         onDragEnd={(result) => onDragHandle(result, columns, setColumns)}
       >
@@ -113,7 +113,7 @@ const DropList = ({ id, column, columnName }) => {
             ref={provided.innerRef}
             // className={`${snapshot.isDraggingOver ? 'bg-blue-500' : 'bg-slate-400'}
             //p-1 w-[250px] min-h-[500px]`}
-            className=" bg-fuchsia-200 flex-auto border-2 border-fuchsia-900 ml-2 min-h-[inherit] h-auto p-2"
+            className=" ml-2 h-auto min-h-[inherit] flex-auto border-2 border-fuchsia-900 bg-fuchsia-200 p-2"
           >
             <h4>{columnName}</h4>
             {column?.items.map((item, index) => {
@@ -139,6 +139,7 @@ const DragItem = ({ item, index }) => {
             style={{ ...dragProvided.draggableProps.style }}
           >
             <Ticket
+              Id={item.Id}
               Title={item.Title}
               Completed={item.Completed}
               Original_Estimate={item.Original_Estimate}
