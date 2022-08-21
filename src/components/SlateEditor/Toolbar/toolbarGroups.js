@@ -120,11 +120,11 @@ const toolbarGroups = [
     },
   ],
   [
-    {
-      id: 20,
-      format: "link",
-      type: "link",
-    },
+    // {
+    //   id: 20,
+    //   format: "link",
+    //   type: "link",
+    // },
     {
       id: 21,
       format: "image",

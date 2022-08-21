@@ -13,7 +13,6 @@ import {
 import useTable from "../utils/useTable.js";
 import defaultToolbarGroups from "./toolbarGroups.js";
 import ColorPicker from "../Elements/ColorPicker/ColorPicker";
-import Linkbutton from "../Elements/Link/Linkbutton";
 import Embed from "../Elements/Embed/Embed";
 import Table from "../Elements/Table/Table";
 import InTable from "../Elements/Table/InTable";
@@ -92,14 +91,14 @@ const Toolbar = () => {
                 return <Markbutton key={element.id} {...element} />;
               case "dropdown":
                 return <Dropdown key={element.id} {...element} />;
-              case "link":
-                return (
-                  <Linkbutton
-                    key={element.id}
-                    active={"true"}
-                    editor={editor}
-                  />
-                );
+              // case "link":
+              //   return (
+              //     <Linkbutton
+              //       key={element.id}
+              //       active={"true"}
+              //       editor={editor}
+              //     />
+              //   );
               case "embed":
                 return (
                   <Embed
