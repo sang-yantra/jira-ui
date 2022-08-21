@@ -1,6 +1,5 @@
 export const BASE_URL =
-  process.env.BASE_URL ||
-  "https://jira-ms-vercel-git-feature-members-monkeydgoku.vercel.app";
+  process.env.BASE_URL || "https://jira-ms-vercel.vercel.app";
 
 const LOCAL_HOST = "https://localhost:5000";
 
