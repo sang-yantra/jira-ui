@@ -7,6 +7,7 @@ import { TASK_MANAGEMENT } from "@/constants/api";
 import SlateEditor from "@/components/SlateEditor/Editor";
 import { FaClipboardCheck } from "react-icons/fa";
 import { Router, useRouter } from "next/router";
+import { useParams } from "react-router-dom";
 
 function Task() {
   // const prefetchData = {
@@ -36,9 +37,10 @@ function Task() {
   const [task, setTask] = useState({});
   const [isLoading, setLoading] = useState(true);
   ///const taskId = "7aab6f10-1bfc-11ed-a3b2-b622babdeb3e";
+  const { id: taskIdfromRouter } = useParams();
+  console.log("params from react router", taskIdfromRouter);
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
   useEffect(() => {
     const abortController = new AbortController();
 

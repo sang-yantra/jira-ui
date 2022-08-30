@@ -11,6 +11,7 @@
 @import url("../components/SlateEditor/Elements/Table/Table.css");
 @import url("../components/SlateEditor/Elements/Video/Video.css");
 @import url("../components/SlateEditor/Toolbar/styles.css");
+@import url("./messages.css");
 
 html,
 body {

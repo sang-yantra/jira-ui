@@ -14,35 +14,9 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
-
+import dynamic from "next/dynamic";
 const queryClient = new QueryClient();
-
-const fetchPbis = async () => {
-  return await fetch(TASK_MANAGEMENT.TASKS)
-    .then((res) => res.json())
-    .then((response) => {
-      const pbiFormArr = {};
-      response.forEach((task) => {
-        /// load pbi
-        const pbiId = task.Pbi[0].Id;
-
-        if (pbiFormArr[pbiId]) {
-          pbiFormArr[pbiId] = {
-            ...pbiFormArr[pbiId],
-            Tasks: [...pbiFormArr[pbiId].Tasks, task],
-          };
-        } else {
-          pbiFormArr[pbiId] = {
-            Pbi: task.Pbi[0],
-            Tasks: [{ ...task }],
-          };
-        }
-      });
-      return pbiFormArr;
-    });
-};
-
-export default function BoardWrapperClient() {
+function BoardWrapperClient() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
@@ -82,6 +56,7 @@ const BoardDataContoller = {
       });
   },
   /**
+   *
    * Update status of the task
    * @param {*} id
    * @param {*} status
@@ -142,3 +117,7 @@ function Board() {
     </div>
   );
 }
+
+export default dynamic(() => Promise.resolve(BoardWrapperClient), {
+  ssr: false,
+});

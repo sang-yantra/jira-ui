@@ -18,10 +18,13 @@
     "react-beautiful-dnd": "^13.1.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0",
     "slate": "^0.82.0",
     "slate-history": "^0.66.0",
     "slate-react": "^0.82.0",
-    "uuid": "^8.3.2"
+    "socket.io-client": "^4.5.1",
+    "uuid": "^8.3.2",
+    "uuid-validate": "^0.0.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
