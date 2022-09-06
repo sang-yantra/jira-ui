@@ -10,7 +10,11 @@ import Ticket from "../../components/Ticket/Ticket";
 import { TASK_MANAGEMENT } from "../../constants/api";
 
 const responseFormatter = (response) => {
-  let responseObj = {};
+  let responseObj = {
+    New: { items: [] },
+    Active: { items: [] },
+    Done: { items: [] },
+  };
   response.forEach((item) => {
     if (responseObj[item.Status]) {
       responseObj[item.Status]["items"] = [
@@ -21,7 +25,7 @@ const responseFormatter = (response) => {
       responseObj[item.Status] = { items: [{ ...item }] };
     }
   });
-  console.log(responseObj);
+  console.log("respone format", responseObj);
   return responseObj;
 };
 

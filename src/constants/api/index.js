@@ -1,7 +1,6 @@
-export const BASE_URL =
-  process.env.BASE_URL || "https://jira-ms-vercel.vercel.app";
-
 const LOCAL_HOST = "https://localhost:5000";
+const PROD_URL = "https://jira-ms-vercel.vercel.app";
+export const BASE_URL = process.env.BASE_URL || PROD_URL;
 
 const API_VERSION = 1;
 const API = "api";

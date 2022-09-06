@@ -52,6 +52,7 @@ const BoardDataContoller = {
             };
           }
         });
+        console.log("response", pbiFormArr);
         return pbiFormArr;
       });
   },
@@ -93,7 +94,7 @@ function Board() {
   if (isError) return <h1 className="text-orange-400">{error.message} ...</h1>;
 
   return (
-    <div className="flex h-screen w-screen justify-start bg-fuchsia-100">
+    <div className="bg flex h-screen w-screen justify-start bg-fuchsia-100">
       <AppSidebar />
       <section
         className=" ml-4 h-[100%] flex-auto overflow-scroll overflow-x-hidden
