@@ -117,7 +117,7 @@ const DropList = ({ id, column, columnName }) => {
             ref={provided.innerRef}
             // className={`${snapshot.isDraggingOver ? 'bg-blue-500' : 'bg-slate-400'}
             //p-1 w-[250px] min-h-[500px]`}
-            className=" ml-2 h-auto min-h-[inherit] flex-auto border-2 border-fuchsia-900 bg-fuchsia-200 p-2"
+            className=" ml-2 h-auto min-h-[inherit] w-[400px] flex-auto border-2 border-fuchsia-900 bg-fuchsia-200 p-2"
           >
             <h4>{columnName}</h4>
             {column?.items.map((item, index) => {

@@ -49,7 +49,6 @@ function Task() {
       fetch(TASK_MANAGEMENT.TASKS_GET_TASK(id))
         .then((response) => response.json())
         .then((response) => {
-          console.log(response);
           setTask(response);
           setLoading(false);
         });

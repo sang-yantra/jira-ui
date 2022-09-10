@@ -1,4 +1,4 @@
-const LOCAL_HOST = "https://localhost:5000";
+const LOCAL_HOST = "http://localhost:5000";
 const PROD_URL = "https://jira-ms-vercel.vercel.app";
 export const BASE_URL = process.env.BASE_URL || PROD_URL;
 
@@ -12,4 +12,9 @@ export const TASK_MANAGEMENT = {
   TASKS_GET_TASK: (id) => `${TASK_MANAGEMENT_CONTROLLER}/tasks/${id}`,
   TASKS_UPDATE_STATUS: (id) =>
     `${TASK_MANAGEMENT_CONTROLLER}/tasks/${id}/status`,
+};
+
+const TEAMS_MANAGEMENT_CONTROLLER = `${BASE_URL}/${API}/${API_VERSION}/teams-management`;
+export const TEAMS_MANAGEMENT = {
+  TEAMS: `${TEAMS_MANAGEMENT_CONTROLLER}/teams`,
 };

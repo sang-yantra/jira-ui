@@ -15,7 +15,13 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 function BoardWrapperClient() {
   return (
     <>
@@ -52,7 +58,6 @@ const BoardDataContoller = {
             };
           }
         });
-        console.log("response", pbiFormArr);
         return pbiFormArr;
       });
   },
