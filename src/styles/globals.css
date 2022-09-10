@@ -4,6 +4,14 @@
 @import url(../components/AppSidebar/AppSidebar.css);
 @import url("../components/Ticket/Ticket.css");
 @import url("../views/home/TeamsGrid.css");
+@import url("../components/SlateEditor/Editor.css");
+@import url("../components/SlateEditor/Elements/ColorPicker/ColorPicker.css");
+@import url("../components/SlateEditor/Elements/Image/Image.css");
+@import url("../components/SlateEditor/Elements/Link/styles.css");
+@import url("../components/SlateEditor/Elements/Table/Table.css");
+@import url("../components/SlateEditor/Elements/Video/Video.css");
+@import url("../components/SlateEditor/Toolbar/styles.css");
+@import url("./messages.css");
 
 html,
 body {
@@ -17,8 +25,11 @@ body {
 }
 
 body {
-  background: linear-gradient(250deg, #7b2ff7, #f107a3);
+  /* background: linear-gradient(250deg, #7b2ff7, #f107a3); */
+  background-color: rgb(245 208 254);
   background-repeat: no-repeat;
+  display: block;
+  overflow: hidden;
 }
 
 .App {
