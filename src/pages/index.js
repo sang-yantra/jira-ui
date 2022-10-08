@@ -38,6 +38,7 @@ export default function Home() {
       <AppSidebar />
       <QueryClientProvider client={queryClient}>
         <Overview />
+        {/* {console.log("component", Overview())} */}
       </QueryClientProvider>
     </div>
   );
@@ -65,7 +66,7 @@ const Overview = () => {
                   Name={team.Name}
                   Description={team.Description}
                   Teams_Photo={team.Teams_Photo}
-                />
+                ></TeamTile>
               );
             })}
           </div>

@@ -14,8 +14,13 @@ import {
 } from "react-icons/fa";
 import Link from "next/link";
 
+import { useSelector, useDispatch } from "react-redux";
+import { setIsOpened, getSidebarOpened } from "@/store/reducers/sideBarReducer";
+
 function AppSidebar() {
-  const [open, setOpen] = useState(true);
+  ///const [open, setOpen] = useState(true);
+  const open = useSelector(getSidebarOpened);
+  const dispatchSideBar = useDispatch();
 
   return (
     <div
@@ -27,7 +32,7 @@ function AppSidebar() {
         className={`absolute -right-3 top-9 cursor-pointer rounded-full bg-white text-3xl text-fuchsia-900
         ${open && "rotate-180"}
         `}
-        onClick={() => setOpen(!open)}
+        onClick={() => dispatchSideBar(setIsOpened())}
       />
       <div className="inline-flex">
         <FaPhoenixSquadron
