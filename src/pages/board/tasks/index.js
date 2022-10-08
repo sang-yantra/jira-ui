@@ -120,6 +120,10 @@ function Board() {
             );
           })}
       </section>
+      <style>
+          
+
+      </style>
     </div>
   );
 }

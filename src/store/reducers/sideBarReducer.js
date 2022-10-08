@@ -5,16 +5,16 @@ const initialState = {
 };
 
 export const sideBarSlice = createSlice({
-  name: "counter",
+  name: "sideBar",
   initialState,
   reducers: {
-    isSetOpened: (state) => {
+    setIsOpened: (state) => {
       state.isOpened = !state.isOpened;
     },
   },
 });
 
-export const { isSetOpened } = sideBarSlice.actions;
+export const { setIsOpened } = sideBarSlice.actions;
 export const getSidebarOpened = (state) => state.sideBar.isOpened;
 
 export default sideBarSlice.reducer;
