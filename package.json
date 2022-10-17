@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.0.5",
     "@reduxjs/toolkit": "^1.8.5",
     "@tanstack/react-query": "^4.2.1",
     "flowbite": "^1.5.2",

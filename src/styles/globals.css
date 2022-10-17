@@ -11,7 +11,14 @@
 @import url("../components/SlateEditor/Elements/Table/Table.css");
 @import url("../components/SlateEditor/Elements/Video/Video.css");
 @import url("../components/SlateEditor/Toolbar/styles.css");
+@import url("../components/CustomTable/Table.css");
 @import url("./messages.css");
+
+
+:root{
+  --scrollbarBG: #CFD8DC;
+  --thumbBG: #90A4AE;
+}
 
 html,
 body {
@@ -25,11 +32,30 @@ body {
 }
 
 body {
+  --bg-slate-800: rgb(30, 41, 59);
+  --bg-gray-800: var(31, 41, 55)
   /* background: linear-gradient(250deg, #7b2ff7, #f107a3); */
-  background-color: rgb(245 208 254);
+  /* background-color: rgb(245 208 254); */
+  background-color: var(--bg-gray-800);
   background-repeat: no-repeat;
   display: block;
-  overflow: hidden;
+  /* overflow-y: scroll; */
+}
+
+body::-webkit-scrollbar {
+  width: 15px;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
 }
 
 .App {

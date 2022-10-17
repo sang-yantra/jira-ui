@@ -1,0 +1,4 @@
+.app-table tbody tr:nth-child(2n) {
+  --bg-gray-200: rgb(229 231 235);
+  background-color: var(--bg-gray-200);
+}
