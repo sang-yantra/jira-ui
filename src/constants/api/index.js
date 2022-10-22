@@ -1,5 +1,5 @@
-const LOCAL_HOST = "http://localhost:5000";
-const LOCAL_HOST_SUPABASE = "https://localhost:7030";
+//const LOCAL_HOST = "http://localhost:5000";
+//const LOCAL_HOST_SUPABASE = "https://localhost:7030";
 const PROD_URL = "https://jira-ms-vercel.vercel.app";
 const MS_PROD_URL = "https://jira-aspnet.onrender.com";
 export const BASE_URL = process.env.BASE_URL || PROD_URL;
