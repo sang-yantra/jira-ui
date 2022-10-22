@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 function Table({ columns, rows }) {
@@ -24,6 +25,8 @@ function TableColumns({ columns }) {
       <th className="app-table-cell">{columns[1]}</th>
       <th className="app-table-cell">{columns[2]}</th>
       <th className="app-table-cell">{columns[3]}</th>
+      <th className="app-table-cell">{columns[4]}</th>
+
     </>
   );
 }
@@ -35,7 +38,9 @@ function TableRow({ row }) {
       {rowCells?.map((item, index) => {
         return (
           <td key={item + "_" + index} className="app-table-cell">
-            {row[item]}
+
+            {item === "avatar" ? <Image width={50} height={50} className="rounded-full" src={row[item]} alt="avatar"/>:row[item]}
+            
           </td>
         );
       })}
