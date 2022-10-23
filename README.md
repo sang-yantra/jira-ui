@@ -38,6 +38,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Use React query for server side data fetching, mutating, caching
 - Use redux for client side global state mangement
   - all user related settings - status, name, email, avatar, sidebar, errorlog
-    token management, tagsview , login -concureent users in the system, total views , logout
+    token management, tagsview , login -concurent users in the system, total views , logout
     sessio, recents, history
 - websocket, webrtc
