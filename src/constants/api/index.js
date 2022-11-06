@@ -1,5 +1,5 @@
-//const LOCAL_HOST = "http://localhost:5000";
-//const LOCAL_HOST_SUPABASE = "https://localhost:7030";
+const LOCAL_HOST = "http://localhost:5000";
+const LOCAL_HOST_SUPABASE = "https://localhost:7030";
 const PROD_URL = "https://jira-ms-vercel.vercel.app";
 const MS_PROD_URL = "https://jira-aspnet.onrender.com";
 export const BASE_URL = process.env.BASE_URL || PROD_URL;
@@ -8,6 +8,11 @@ const API_VERSION = 1;
 const API = "api";
 
 /// controler
+const APP_LOGIN_CONTROLLER = `${BASE_URL}/${API}`;
+export const APP_LOGIN = {
+  LOGIN: `${APP_LOGIN_CONTROLLER}/login`,
+};
+
 const TASK_MANAGEMENT_CONTROLLER = `${BASE_URL}/${API}/${API_VERSION}/tasks-management`;
 export const TASK_MANAGEMENT = {
   TASKS: `${TASK_MANAGEMENT_CONTROLLER}/tasks`,
@@ -21,7 +26,7 @@ export const TEAMS_MANAGEMENT = {
   TEAMS: `${TEAMS_MANAGEMENT_CONTROLLER}/teams`,
 };
 
-const TEAMS_MANAGEMENT_CONTROLLER_V2 = `${MS_PROD_URL}/${API}/${API_VERSION}/TeamsManagement`;
+const TEAMS_MANAGEMENT_CONTROLLER_V2 = `${BASE_URL}/${API}/${API_VERSION}/TeamsManagement`;
 export const TEAMS_MANAGEMENT_ACTIONS = {
   TEAMS: `${TEAMS_MANAGEMENT_CONTROLLER_V2}/teams`,
 };
@@ -33,7 +38,7 @@ export const CHATS_MANAGEMENT_ACTIONS = {
   ROOMS: `${CHATS_MANAGEMENT_CONTROLLER}/rooms`,
 };
 
-const USERS_MANAGMENT_CONTORLLER = `${MS_PROD_URL}/${API}/${API_VERSION}/UsersManagement`;
+const USERS_MANAGMENT_CONTORLLER = `${BASE_URL}/${API}/${API_VERSION}/UsersManagement`;
 export const USERS_MANAGEMENT_ACTIONS = {
   USERS: `${USERS_MANAGMENT_CONTORLLER}/users`,
 };

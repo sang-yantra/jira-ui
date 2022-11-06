@@ -127,7 +127,7 @@ function Messages({ channelId }) {
 
   function handleSubmit() {
     const body = {
-      channelId: "5d6e437b-a493-4042-973a-85248b018050",
+      channelId: channelId,
       event: "my-event",
       message: message,
       senderId: userId,
@@ -164,10 +164,14 @@ function Messages({ channelId }) {
                 
                 `}
               >
-                <div className="user_avatar h-[50px] w-[50px] rounded-full bg-white text-center text-black">
-                  {chat.userName.substring(0, 2)}
-                </div>
-                <div className="user_message rounded-lg bg-fuchsia-100 p-2">
+                <Image
+                  className="user_avatar rounded-full"
+                  src={chat.avatar}
+                  alt="avatar"
+                  width={50}
+                  height={50}
+                />
+                <div className="user_message max-w-[50%] rounded-lg bg-fuchsia-100 p-2">
                   <h3>
                     {chat.userName}&nbsp;&nbsp;&nbsp;
                     {new Date(chat.createdDatetime).toLocaleTimeString()}{" "}

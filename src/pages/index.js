@@ -23,6 +23,8 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
+import httprequest from "@/utils/client/axios";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -46,11 +48,12 @@ export default function Home() {
 }
 
 const fetchTeams = async () => {
-  return await fetch(TEAMS_MANAGEMENT_ACTIONS.TEAMS)
+  return await fetch(TEAMS_MANAGEMENT_ACTIONS.TEAMS, {
+    credentials: "include",
+  })
     .then((res) => res.json())
     .then((response) => response);
 };
-
 const Overview = () => {
   const { data, isLoading } = useQuery(["teams"], () => fetchTeams());
 
