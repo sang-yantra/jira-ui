@@ -3,37 +3,13 @@ import AppSidebar from "@/components/AppSidebar/AppSidebar";
 import { createEditor } from "slate";
 import { Slate, Editable, withReact } from "slate-react";
 
-import { TASK_MANAGEMENT } from "@/constants/api";
+import { TASK_MANAGEMENT, TASK_MANAGEMENT_V2 } from "@/constants/api";
 import SlateEditor from "@/components/SlateEditor/Editor";
 import { FaClipboardCheck } from "react-icons/fa";
 import { Router, useRouter } from "next/router";
 import { useParams } from "react-router-dom";
 
 function Task() {
-  // const prefetchData = {
-  //   Id: "7aab6f10-1bfc-11ed-a3b2-b622babdeb3e",
-  //   Pbi_Id: "f57da697-1bfa-11ed-a3b2-b622babdeb3e",
-  //   Title: "Create node js apis",
-  //   Type: "Normal",
-  //   Description: "Implement swagger",
-  //   Status: "Active",
-  //   Acceptance_Criteria: "Verify that rest apis are working",
-  //   Nfr: "some nfr",
-  //   Original_Estimate: 10,
-  //   Remaining: 5,
-  //   Completed: 5,
-  //   Priority: "High",
-  //   Assigned_To: "ad55b9e0-39f6-49aa-8660-f4c4a998fd9d",
-  //   Created_Date: "2022-08-14T18:11:12.000Z",
-  //   Updated_Date: "2022-08-14T18:11:12.000Z",
-  //   Pbi: {
-  //     Title: "Implementation of Jira backend",
-  //   },
-  //   Assigned: {
-  //     Name: "Anup Mahato",
-  //     Email: "anup.mahato@gmail.com",
-  //   },
-  // };
   const [task, setTask] = useState({});
   const [isLoading, setLoading] = useState(true);
   ///const taskId = "7aab6f10-1bfc-11ed-a3b2-b622babdeb3e";
@@ -46,9 +22,10 @@ function Task() {
 
     const fetchTask = async () => {
       debugger;
-      fetch(TASK_MANAGEMENT.TASKS_GET_TASK(id))
+      fetch(TASK_MANAGEMENT_V2.TASKS_GET_TASK(id))
         .then((response) => response.json())
         .then((response) => {
+          console.log("task", response);
           setTask(response);
           setLoading(false);
         });
@@ -75,26 +52,26 @@ function Task() {
             <form onSubmit={handleFormSubmit}>
               <h1 className="text-center">
                 <FaClipboardCheck className="inline-block text-xl text-blue-300" />
-                Task Id : {task.Id}
+                Task Id : {task.id}
               </h1>
               <div className=" border-l-8 border-orange-500 p-3">
                 <input
                   id="ftitle"
                   name="ftitle"
                   type={"text"}
-                  value={task.Title}
+                  value={task.title}
                   className="focus:border-dotte w-full border-none bg-transparent p-2 text-2xl focus:border-2"
-                  onChange={(e) => setTask({ ...task, Title: e.target.value })}
+                  onChange={(e) => setTask({ ...task, title: e.target.value })}
                 />
                 <div className="mt-4 flex items-center">
                   <span className=" inline-block h-[50px] w-[50px] rounded-full bg-cyan-300">
                     {" "}
                   </span>
-                  <span className="ml-2">{task.Assigned.Name}</span>
+                  <span className="ml-2">{"ANUP"}</span>
                 </div>
               </div>
               <div className="content block min-h-[400px] w-[70%]">
-                <Description description={task.Description} />
+                <Description description={task.description} />
               </div>
               <br></br>
               <button className="group relative mb-2 mr-2 inline-flex items-center justify-center overflow-hidden rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 p-0.5 text-sm font-medium text-gray-900 hover:text-white focus:outline-none focus:ring-4 focus:ring-purple-200 group-hover:from-purple-500 group-hover:to-pink-500 dark:text-white dark:focus:ring-purple-800">

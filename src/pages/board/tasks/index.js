@@ -7,7 +7,7 @@ import AppSidebar from "../../../components/AppSidebar/AppSidebar";
 import AppDrawer from "../../../components/AppDrawer";
 import Ticket from "../../../components/Ticket/Ticket";
 import { useEffect, useState } from "react";
-import { TASK_MANAGEMENT } from "../../../constants/api";
+import { TASK_MANAGEMENT, TASK_MANAGEMENT_V2 } from "../../../constants/api";
 import DndBoard from "../../../components/DnD/DndBoard";
 import {
   QueryClient,
@@ -38,23 +38,45 @@ const BoardDataContoller = {
    * @returns Promise
    */
   fetchPbis: async () => {
-    return await fetch(TASK_MANAGEMENT.TASKS)
+    return await fetch(
+      TASK_MANAGEMENT_V2.TASKS("159f154d-cb13-445a-a107-f74cd6507beb")
+    )
       .then((res) => res.json())
       .then((response) => {
-        const pbiFormArr = {};
+        console.log("response", response);
+        let pbiFormArr = {};
         response.forEach((task) => {
-          /// load pbi
-          const pbiId = task.Pbi[0].Id;
-
-          if (pbiFormArr[pbiId]) {
-            pbiFormArr[pbiId] = {
-              ...pbiFormArr[pbiId],
-              Tasks: [...pbiFormArr[pbiId].Tasks, task],
-            };
+          if (pbiFormArr[task.userStoryId]) {
+            debugger;
+            pbiFormArr[task.userStoryId].Tasks = [
+              ...pbiFormArr[task.userStoryId].Tasks,
+              {
+                Id: task.taskId,
+                Title: task.taskTitle,
+                Status: task.taskStatus,
+                Original_Estimate: task.taskOriginalEstimate,
+                Completed: task.taskCompleted,
+              },
+            ];
           } else {
-            pbiFormArr[pbiId] = {
-              Pbi: task.Pbi[0],
-              Tasks: [{ ...task }],
+            debugger;
+            pbiFormArr[task.userStoryId] = {
+              Pbi: {
+                Id: task.userStoryId,
+                Team_Id: task.teamId,
+                Title: task.userStoryTitle,
+                Status: task.userStoryStatus,
+                Effort: task.userStoryEffort,
+              },
+              Tasks: [
+                {
+                  Id: task.taskId,
+                  Title: task.taskTitle,
+                  Status: task.taskStatus,
+                  Original_Estimate: task.taskOriginalEstimate,
+                  Completed: task.taskCompleted,
+                },
+              ],
             };
           }
         });
@@ -68,15 +90,17 @@ const BoardDataContoller = {
    * @param {*} status
    */
   updateTasksStatus: (id, status) => {
-    const Status = { Status: status };
-    console.log("url", TASK_MANAGEMENT.TASKS_UPDATE_STATUS(id));
-    fetch(TASK_MANAGEMENT.TASKS_UPDATE_STATUS(id), {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(Status),
-    })
+    fetch(
+      TASK_MANAGEMENT_V2.UPDATE_TASK_STATUS +
+        "?" +
+        new URLSearchParams({
+          id,
+          status,
+        }),
+      {
+        method: "PUT",
+      }
+    )
       .then((response) => response.json())
       .then((response) => {
         console.log("Task", id, "updated with statsus", status);
@@ -120,10 +144,7 @@ function Board() {
             );
           })}
       </section>
-      <style>
-          
-
-      </style>
+      <style></style>
     </div>
   );
 }

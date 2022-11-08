@@ -11,9 +11,9 @@ import { TASK_MANAGEMENT } from "../../constants/api";
 
 const responseFormatter = (response) => {
   let responseObj = {
-    New: { items: [] },
-    Active: { items: [] },
-    Done: { items: [] },
+    NEW: { items: [] },
+    ACTIVE: { items: [] },
+    DONE: { items: [] },
   };
   response.forEach((item) => {
     if (responseObj[item.Status]) {
@@ -33,9 +33,9 @@ const responseFormatter = (response) => {
  * For ordering of the status type
  */
 const StatusType = {
-  New: "New",
-  Active: "Active",
-  Done: "Done",
+  NEW: "NEW",
+  ACTIVE: "ACTIVE",
+  DONE: "DONE",
 };
 
 function DndBoard({ responseCols, updateTasksStatus }) {

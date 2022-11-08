@@ -28,9 +28,8 @@
   box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
   padding: 50px 35px;
 } */
-form * {
+/* form * {
   font-family: "Poppins", sans-serif;
-  color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
   border: none;
@@ -94,4 +93,4 @@ button {
 }
 .social i {
   margin-right: 4px;
-}
+} */

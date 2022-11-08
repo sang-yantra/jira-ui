@@ -13,14 +13,14 @@ const Ticket = ({
   isDragging,
 }) => {
   const statusColor = {
-    New: "bg-orange-300",
-    Active: "bg-teal-300",
-    Done: "bg-green-300",
+    NEW: "bg-orange-300",
+    ACTIVE: "bg-teal-300",
+    DONE: "bg-green-300",
   };
   const borderColors = {
-    New: "border-orange-700",
-    Active: "border-teal-700",
-    Done: "border-green-700",
+    NEW: "border-orange-700",
+    ACTIVE: "border-teal-700",
+    DONE: "border-green-700",
   };
   return (
     <div

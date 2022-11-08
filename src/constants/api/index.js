@@ -13,12 +13,21 @@ export const APP_LOGIN = {
   LOGIN: `${APP_LOGIN_CONTROLLER}/login`,
 };
 
-const TASK_MANAGEMENT_CONTROLLER = `${BASE_URL}/${API}/${API_VERSION}/tasks-management`;
+const TASK_MANAGEMENT_CONTROLLER = `${PROD_URL}/${API}/${API_VERSION}/tasks-management`;
 export const TASK_MANAGEMENT = {
   TASKS: `${TASK_MANAGEMENT_CONTROLLER}/tasks`,
   TASKS_GET_TASK: (id) => `${TASK_MANAGEMENT_CONTROLLER}/tasks/${id}`,
   TASKS_UPDATE_STATUS: (id) =>
     `${TASK_MANAGEMENT_CONTROLLER}/tasks/${id}/status`,
+};
+
+const TASK_MANAGEMENT_CONTROLLER_V2 = `${BASE_URL}/${API}/${API_VERSION}/TasksManagement`;
+export const TASK_MANAGEMENT_V2 = {
+  TASKS: (teamId) => `${TASK_MANAGEMENT_CONTROLLER_V2}/${teamId}/tasks`,
+  TASKS_GET_TASK: (id) => `${TASK_MANAGEMENT_CONTROLLER_V2}/tasks/${id}`,
+  CREATE_TASK: `${TASK_MANAGEMENT_CONTROLLER_V2}/task`,
+  UPDATE_TASK: `${TASK_MANAGEMENT_CONTROLLER_V2}/task`,
+  UPDATE_TASK_STATUS: `${TASK_MANAGEMENT_CONTROLLER_V2}/task-status`,
 };
 
 const TEAMS_MANAGEMENT_CONTROLLER = `${BASE_URL}/${API}/${API_VERSION}/teams-management`;
