@@ -87,19 +87,21 @@ function DndBoard({ responseCols, updateTasksStatus }) {
     }
   };
   return (
-    <div className="flex h-[100%] flex-[0.75] gap-1">
+    <div className="flex h-[100%] flex-[0.75]">
       <DragDropContext
         onDragEnd={(result) => onDragHandle(result, columns, setColumns)}
       >
         {Object.keys(StatusType).map((key, index) => {
           const column = columns[key];
           return (
-            <DropList
-              key={StatusType[key]}
-              id={StatusType[key]}
-              column={column}
-              columnName={key}
-            />
+            <>
+              <DropList
+                key={StatusType[key]}
+                id={StatusType[key]}
+                column={column}
+                columnName={key}
+              />
+            </>
           );
         })}
       </DragDropContext>
@@ -117,9 +119,15 @@ const DropList = ({ id, column, columnName }) => {
             ref={provided.innerRef}
             // className={`${snapshot.isDraggingOver ? 'bg-blue-500' : 'bg-slate-400'}
             //p-1 w-[250px] min-h-[500px]`}
-            className=" ml-2 h-auto min-h-[inherit] w-[400px] flex-auto border-2 border-fuchsia-900 bg-fuchsia-200 p-2"
+            className="mb-2 h-auto min-h-[inherit] w-[300px] flex-auto border-r-2 border-b-2
+             border-r-neutral-100 border-b-neutral-100 bg-zinc-800/50 p-2"
           >
-            <h4>{columnName}</h4>
+            <h4 className=" text-center text-neutral-50">{columnName}</h4>
+            {columnName === StatusType.NEW ? (
+              <button className=" bg-fuchsia-100 p-1 hover:text-neutral-50">
+                Add +
+              </button>
+            ) : null}
             {column?.items.map((item, index) => {
               return <DragItem key={item.Id} item={item} index={index} />;
             })}

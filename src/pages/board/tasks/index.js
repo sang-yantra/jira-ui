@@ -126,15 +126,15 @@ function Board() {
     <div className="bg flex h-screen w-screen justify-start bg-fuchsia-100">
       <AppSidebar />
       <section
-        className=" ml-4 h-[100%] flex-auto overflow-scroll overflow-x-hidden
-             bg-fuchsia-100 p-4 text-lg font-semibold text-black"
+        className="h-[100%] flex-auto overflow-scroll overflow-x-hidden
+             bg-neutral-900 p-4 text-lg font-semibold text-black"
       >
         {pbis &&
           Object.keys(pbis).map((key, index) => {
             return (
               <div key={index} className="flex justify-start">
                 <div className="flex-[0.25]">
-                  <Ticket Title={pbis[key].Pbi.Title} />
+                  <Ticket {...pbis[key].Pbi} />
                 </div>
                 <DndBoard
                   responseCols={pbis[key].Tasks}
