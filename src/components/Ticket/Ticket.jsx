@@ -24,7 +24,7 @@ const Ticket = ({
   };
   return (
     <div
-      className={`m-auto mt-7 min-h-[150px] w-[250px] select-none rounded-md p-3 font-medium text-black 
+      className={`m-auto mt-7 min-h-[100px] w-[250px] select-none rounded-md p-3 font-medium text-black 
       ${statusColor[Status]}
        border-l-8 ${borderColors[Status]}
       cursor-pointer shadow-md
