@@ -38,23 +38,4 @@
         d="m476.42 658.73s1.7418 2.1202 15.276-8.072 57.704-55.375 66.321-68.949c8.6166-13.574 4.1167-10.766 4.1167-10.766s-6.1999 8.2398-9.578 10.833c-3.3782 2.5933-7.2712 4.7063-12.467 6.218-5.1955 1.5117-15.191 1.9242-22.023 2.2908-6.8313 0.36667-23.466 0.0843-23.466 0.0843s2.1144 30.893 1.0812 38.808c-1.0332 7.9146-1.6941 9.8111-4.0796 13.799-2.3855 3.9878-9.5743 9.2469-11.793 11.669-2.2188 2.4221-3.3891 4.0852-3.3891 4.0852z" />
     </g>
   </g>
-  <metadata id="metadata17">
-    <rdf:RDF>
-      <cc:Work>
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
-        <dc:publisher>
-          <cc:Agent rdf:about="http://openclipart.org/">
-            <dc:title>Openclipart</dc:title>
-          </cc:Agent>
-        </dc:publisher>
-      </cc:Work>
-      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
-        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction" />
-        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution" />
-        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
-      </cc:License>
-    </rdf:RDF>
-  </metadata>
 </svg>

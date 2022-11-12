@@ -1,7 +1,14 @@
+import { Progress } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaClipboardCheck } from "react-icons/fa";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+
+import stickynoteNew from "@/assets/images/svgs/stickynote-new.svg";
+import stickynoteActive from "@/assets/images/svgs/stickynote-active.svg";
+import stickynoteDone from "@/assets/images/svgs/stickynote-done.svg";
 
 const Ticket = ({
   Id,
@@ -22,16 +29,32 @@ const Ticket = ({
     ACTIVE: "border-teal-700",
     DONE: "border-green-700",
   };
+  const progressColors = {
+    NEW: "yellow",
+    ACTIVE: "blue",
+    DONE: "green",
+  };
+
+  const bgImage = {
+    NEW: stickynoteNew,
+    ACTIVE: stickynoteActive,
+    DONE: stickynoteDone,
+  };
+
   return (
     <div
-      className={`m-auto mt-7 min-h-[100px] w-[250px] select-none rounded-md p-3 font-medium text-black 
-      ${statusColor[Status]}
-       border-l-8 ${borderColors[Status]}
-      cursor-pointer shadow-md
-      hover:shadow-lg
-      ${isDragging ? " opacity-50" : ""}
+      className={`m-auto mt-7 min-h-[100px] w-[250px] cursor-pointer select-none rounded-md bg-center bg-no-repeat p-3 
+      font-medium ${isDragging ? " opacity-50" : ""}
   `}
+      style={{
+        backgroundImage: `url(${bgImage[Status].src})`,
+      }}
     >
+      <Progress
+        progress={(Completed * 100) / Original_Estimate}
+        size="sm"
+        color={progressColors[Status]}
+      />
       <FaClipboardCheck className="inline-block text-lg text-blue-500" />
       <Link href={`/board/tasks/${Id}`}>
         <a className="ml-3">

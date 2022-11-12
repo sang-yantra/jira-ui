@@ -123,12 +123,9 @@ function Board() {
   if (isError) return <h1 className="text-orange-400">{error.message} ...</h1>;
 
   return (
-    <div className="bg flex h-screen w-screen justify-start bg-fuchsia-100">
+    <div className="flex h-screen w-screen justify-start">
       <AppSidebar />
-      <section
-        className="h-[100%] flex-auto overflow-scroll overflow-x-hidden
-             bg-neutral-900 p-4 text-lg font-semibold text-black"
-      >
+      <section className="h-[100%] flex-auto overflow-scroll overflow-x-hidden p-4 text-lg font-semibold text-black">
         {pbis &&
           Object.keys(pbis).map((key, index) => {
             return (

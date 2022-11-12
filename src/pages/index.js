@@ -24,6 +24,7 @@ import {
 } from "@tanstack/react-query";
 
 import httprequest from "@/utils/client/axios";
+import TeamCard from "@/components/TeamCard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -63,17 +64,17 @@ const Overview = () => {
     const teams = TeamsApiMapper(data);
     return (
       <>
-        <section className="body-font overflow-scroll text-gray-600">
+        <section className="body-font w-full overflow-y-auto text-gray-600">
           <div className="container mx-auto px-5 py-10">
-            <div className="-m-4 flex flex-wrap">
+            <div className="-m-4 flex flex-wrap gap-4">
               {teams?.map((team, index) => {
                 return (
-                  <TeamTile
+                  <TeamCard
                     key={team.Id}
                     Name={team.Name}
                     Description={team.Description}
                     Teams_Photo={team.Teams_Photo}
-                  ></TeamTile>
+                  ></TeamCard>
                 );
               })}
             </div>

@@ -3,7 +3,6 @@
 @tailwind utilities;
 @import url(../components/AppSidebar/AppSidebar.css);
 @import url("../components/Ticket/Ticket.css");
-@import url("../views/home/TeamsGrid.css");
 @import url("../components/SlateEditor/Editor.css");
 @import url("../components/SlateEditor/Elements/ColorPicker/ColorPicker.css");
 @import url("../components/SlateEditor/Elements/Image/Image.css");
@@ -15,10 +14,9 @@
 @import url("./messages.css");
 @import url("../pages/login/login.css");
 
-
-:root{
+:root {
   --scrollbarBG: #122025;
-  --thumbBG: #90A4AE;
+  --thumbBG: #90a4ae;
 }
 
 html,
@@ -34,10 +32,11 @@ body {
 
 body {
   --bg-slate-800: rgb(30, 41, 59);
-  --bg-gray-800: var(31, 41, 55)
+  --bg-gray-800: rgb(31, 41, 55);
   /* background: linear-gradient(250deg, #7b2ff7, #f107a3); */
   /* background-color: rgb(245 208 254); */
-  background-color: var(--bg-gray-800);
+  /* background-color: var(--bg-gray-800); */
+  background-image: url("../assets/images/login/bg-8.jpg");
   background-repeat: no-repeat;
   display: block;
   /* overflow-y: scroll; */
@@ -54,7 +53,7 @@ body::-webkit-scrollbar-track {
   background: var(--scrollbarBG);
 }
 body::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG) ;
+  background-color: var(--thumbBG);
   border-radius: 6px;
   border: 3px solid var(--scrollbarBG);
 }

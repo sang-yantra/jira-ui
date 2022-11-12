@@ -8,6 +8,7 @@ import {
 import { v4 as uuid } from "uuid";
 import Ticket from "../../components/Ticket/Ticket";
 import { TASK_MANAGEMENT } from "../../constants/api";
+import Modal from "../Modal";
 
 const responseFormatter = (response) => {
   let responseObj = {
@@ -94,14 +95,12 @@ function DndBoard({ responseCols, updateTasksStatus }) {
         {Object.keys(StatusType).map((key, index) => {
           const column = columns[key];
           return (
-            <>
-              <DropList
-                key={StatusType[key]}
-                id={StatusType[key]}
-                column={column}
-                columnName={key}
-              />
-            </>
+            <DropList
+              key={StatusType[key]}
+              id={StatusType[key]}
+              column={column}
+              columnName={key}
+            />
           );
         })}
       </DragDropContext>
@@ -110,6 +109,7 @@ function DndBoard({ responseCols, updateTasksStatus }) {
 }
 
 const DropList = ({ id, column, columnName }) => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <Droppable droppableId={id} className="border-2 border-fuchsia-600">
       {(provided, snapshot) => {
@@ -124,9 +124,17 @@ const DropList = ({ id, column, columnName }) => {
           >
             <h4 className=" text-center text-neutral-50">{columnName}</h4>
             {columnName === StatusType.NEW ? (
-              <button className=" bg-fuchsia-100 p-1 hover:text-neutral-50">
-                Add +
-              </button>
+              <div>
+                <button
+                  className="block rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="button"
+                  data-modal-toggle="defaultModal"
+                  onClick={() => setShowModal(!showModal)}
+                >
+                  Toggle modal
+                </button>
+                <Modal show={showModal} setIsShow={setShowModal} />
+              </div>
             ) : null}
             {column?.items.map((item, index) => {
               return <DragItem key={item.Id} item={item} index={index} />;
