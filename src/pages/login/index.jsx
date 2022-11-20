@@ -3,13 +3,16 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { APP_LOGIN, TEAMS_MANAGEMENT_ACTIONS } from "@/constants/api";
 import httprequest from "@/utils/client/axios";
-
 import { FaKey, FaPhoenixSquadron, FaUser } from "react-icons/fa";
 import { User } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, setUser } from "@/store/reducers/userReducer";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const router = useRouter();
+
   function handleSubmit(e) {
     e.preventDefault();
     fetch(APP_LOGIN.LOGIN, {
@@ -26,8 +29,18 @@ export default function Login() {
       },
     })
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
+      .then((response) => {
+        dispatch(
+          setUser({
+            userid: response.id,
+            username: response.username,
+            firstname: response.firstname,
+            middlename: response.middlename,
+            lastname: response.lastname,
+            email: response.email,
+            avatar: response.avatar,
+          })
+        );
         router.push("/");
       })
       .catch((error) => {

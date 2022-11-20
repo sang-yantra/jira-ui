@@ -94,8 +94,8 @@ function AppSidebar() {
               />
               <SidebarItem
                 Icon={FaFacebookMessenger}
-                itemName={"Messages"}
-                path={"messages"}
+                itemName={"Chat"}
+                path={"chat"}
                 color={"text-pink-600"}
                 open={open}
               />

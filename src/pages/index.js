@@ -24,7 +24,9 @@ import {
 } from "@tanstack/react-query";
 
 import httprequest from "@/utils/client/axios";
+import { getUser, setUser } from "@/store/reducers/userReducer";
 import TeamCard from "@/components/TeamCard";
+import { useRouter } from "next/router";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,9 +36,8 @@ const queryClient = new QueryClient({
   },
 });
 export default function Home() {
-  const [team, setTeam] = useState("");
-  const counter = useSelector(selectCounter);
-  const dispatch = useDispatch();
+  const { userid } = useSelector(getUser);
+  const router = useRouter();
 
   return (
     <div className="flex h-screen w-screen justify-start gap-5">
