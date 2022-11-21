@@ -38,7 +38,7 @@ function Chat() {
           setRoomId(res[0].id);
         }
       });
-  }, []);
+  }, [userid, email]);
 
   return (
     <div className="flex h-screen w-screen justify-start bg-fuchsia-100 text-black">
@@ -130,7 +130,7 @@ function Messages({ channelId, userid, username, email, avatar }) {
     return () => {
       pusher.disconnect();
     };
-  }, [channelId]);
+  }, [channelId, username]);
   function handleSubmit() {
     const body = {
       channelId: channelId,
